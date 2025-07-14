@@ -9,7 +9,7 @@
 <table>
   <tr>
     <td>
-      <img src="docs/expo-video-audio-overlay-hero.png" alt="Hero marketing graphic" width="300" />
+      <img src="docs/expo-video-audio-overlay-hero.png" alt="Hero marketing graphic" width="400" />
     </td>
   </tr>
 </table>
