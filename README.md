@@ -6,6 +6,14 @@
 
 *No FFmpeg • No GPL • Just the platform media APIs — `AVMutableComposition` (iOS) & `MediaMuxer` (Android)*
 
+<table>
+  <tr>
+    <td>
+      <img src="docs/expo-video-audio-overlay-hero.png" alt="Hero marketing graphic" width="300" />
+    </td>
+  </tr>
+</table>
+
 ## Table of Contents
 
 - [Expo Video Audio Overlay](#expo-video-audio-overlay)
