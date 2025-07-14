@@ -11,14 +11,14 @@ public class ExpoVideoAudioOverlayModule: Module {
     Name("ExpoVideoAudioOverlay")
     Events("progress", "error")
 
-    AsyncFunction("overlayAudio") { (options: [String: Any]) -> String in
+    AsyncFunction("overlayAudio") { (options: [String: Any]) async throws -> String in
       let params = try OverlayParams(dict: options)
       let taskId = UUID().uuidString
 
       return try await withCheckedThrowingContinuation { continuation in
-        DispatchQueue.global(qos: .userInitiated).async {
+        Task(priority: .userInitiated) {
           do {
-            try Self.runOverlay(params: params, module: self, taskId: taskId)
+            try await Self.runOverlay(params: params, module: self, taskId: taskId)
             continuation.resume(returning: params.output)
           } catch {
             self.sendEvent("error", ["taskId": taskId, "message": error.localizedDescription])
@@ -38,7 +38,7 @@ public class ExpoVideoAudioOverlayModule: Module {
 
   private static func runOverlay(
     params p: OverlayParams, module: ExpoVideoAudioOverlayModule, taskId: String
-  ) throws {
+  ) async throws {
     // Clean existing output
     try? FileManager.default.removeItem(atPath: p.output)
 
